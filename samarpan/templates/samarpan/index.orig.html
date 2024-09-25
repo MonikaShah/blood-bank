@@ -1,0 +1,512 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content='http://samarpanbloodcentre.org/' property='og:url'>
+<meta content="WELCOME TO SAMARPAN BLOOD CENTRE" property='og:title'>
+<meta content='http://samarpanbloodcentre.org/images/slide1.jpg' property='og:image'>
+<meta content="We take proud to inform you that the Samarpan Blood Bank started by North East Zone Chemists Educational & Welfare Trust floated by a trust of chemists situated in between Mankhurd-Chembur, Kurla to Mulund area by Shri.Dilip A. Mehta & Shri.Damji M. Palan as a founder trustee/s in the year 1998 from..." property='og:description'>
+<meta name="facebook-domain-verification" content="8jo8fj5tx5c6n8ogk802j7wnbdg05y" />
+
+<title>WELCOME TO SAMARPAN BLOOD CENTRE</title>
+<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'css/font-awesome.min.css' %}" rel='stylesheet' type='text/css' />
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+  <!-- Custom Theme files -->
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</script>
+  <!---- start-smoth-scrolling---->
+<script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".scroll").click(function(event){		
+      event.preventDefault();
+      $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+    });
+  });
+</script>
+    
+<link rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+
+<link rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap" rel="stylesheet"> 
+
+<link rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet"> 
+
+
+ <!--<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap" rel="stylesheet"> 
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet"> 
+		-->
+		
+	</head>
+	<body style="background: #fff;">
+    
+    
+		<!----- start-header---->
+			<div id="home" class="header">
+					<div class="top-header">
+						<div class="container">
+						
+						<!----start-top-nav---->
+                        
+                         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo">
+							<a href="index.html"><img src="{% static 'images/logo.png' %}" title="Samarpan Blood Bank Logo" /></a>
+						</div>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                   <li class="active">
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about' %}">About Us</a>
+                    </li>
+                      <li>
+                        <a href="Product.html">Product</a>
+                    </li>
+                     <li>
+                        <a href="Organizer.html">Organizer</a>
+                    </li>
+                    <li>
+                        <a href="services.html">Services</a>
+                    </li>
+                    <li>
+                        <a href="Donor.html">Donor</a>
+                    </li>
+                     <li>
+                        <a href="Other_activities.html">Other Activities</a>
+                    </li>
+                     <li>
+                        <a href="Media.html">Gallery</a>
+                    </li>
+                    
+                     <li>
+                        <a href="Thalassemia.html">Thalassemia</a>
+                    </li>
+                     <li>
+                        <a href="contact.html">Contact</a>
+                    </li> 
+                     <li style="background-color:#C33; color:#FFF">
+                        <a href="Donation.html"  style="color:#FFF; font-weight:bold"> Donation <span class="fa fa-rupee"></span></a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+                        
+                       
+						
+                        
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+            
+            
+            
+		<!----- //End-header---->
+
+
+    <!-- Index.html content -->
+		<!----start-slider-script---->
+			<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+			 <script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 4
+			      $("#slider4").responsiveSlides({
+			        auto: true,
+			        pager: true,
+			        nav: true,
+			        speed: 500,
+			        namespace: "callbacks",
+			        before: function () {
+			          $('.events').append("<li>before event fired.</li>");
+			        },
+			        after: function () {
+			          $('.events').append("<li>after event fired.</li>");
+			        }
+			      });
+			
+			    });
+			  </script>
+			<!----//End-slider-script---->
+            
+            
+            
+            
+			<!-- Slideshow 4 -->
+			    <div  id="top" class="callbacks_container">
+			      <ul class="rslides" id="slider4">
+			        <li>
+			          <img src="{% static 'images/slide1.jpg' %}" alt="">
+			         
+			        </li>
+			        <li>
+			          <img src="{% static 'images/slide1.jpg' %}" alt="">
+			         
+			        </li>
+			        <li>
+			          <img src="{% static 'images/slide1.jpg' %}" alt="">
+			          
+			        </li>
+			      </ul>
+			    </div>
+			    <div class="clearfix"> </div>
+			<!----- //End-slider---->
+			<!---- about ---->
+			<div id="about" class="about">
+				<div class="container">
+					
+                    
+                    
+      <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0">
+      <div class="col-md-8 col-sm-8 col-xs-12">
+          <div class="header about-header text-justify">
+              <h2 style="width:100%">Welcome to Samarpan Blood centre</h2>
+              
+            <p>We take proud to inform you that the <b>Samarpan Blood Bank</b> started by <b>North East Zone Chemists Educational & Welfare Trust</b> floated by a trust of chemists situated in between Mankhurd-Chembur, Kurla to Mulund area by 
+Shri.Dilip A. Mehta & Shri.Damji M. Palan as a founder trustee/s in the year 1998 from scratch with sheer <b>"Determination" & "Faith"</b> to today's level by fulfilling the faith shown by the chemists who had contributed 100% fund required for starting up of blood bank project. 
+</p><br />
+                                
+                                
+            <p>A unique concept of service to humanity in professional way<br />
+      			- <b>By the Chemists</b> - For the People
+
+</p>
+<br />
+<p><b>Samarpan</b> in continuation with mission statement ensures easily accessible and adequate supply of safe and quality blood, blood components collected and procured from a voluntary non-remunerated regular blood donor in well equipped premises, which is free from transfusion transmitted infections, and is stored and transported under optimum conditions and issues it at following <b>Not for Profit</b> charges and always ready to help deserving person by making policy that <b>no one should suffer for blood</b> due to want of even reasonable charges and thus making blood available first then comes rest.
+</p>
+                        </div>
+                    </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="padding:25px 0px">
+                        <div class="about-grid">                              
+								<div class="about-grid-info">	
+									<h4><a class="fa fa-hand-o-right" style="color:White; padding-right:5px;"></a> <a href="how_it_work.html" style="color:White">How it works</a></h4>
+									<h4><a class="fa fa-dropbox" style="color:White; padding-right:10px;"></a><a href="who_can_donate_blood.html" style="color:White">Who can donate blood</a></h4>
+									<h4><a class="fa fa-question" style="color:White; padding-right:15px;"></a><a href="why_donat_blood.html" style="color:White">Why donate blood</a></h4>
+									<h4><a class="fa fa-bullhorn" style="color:White; padding-right:15px;"></a><a href="donor_speak.html" style="color:White">Donor's speak</a></h4>
+									<h4><a class="fa fa-ils" style="color:White; padding-right:10px;"></a><a href="get_involved.html" style="color:White"> Get Involved</a></h4>
+									<h4><a class="fa fa-edit" style="color:White; padding-right:10px;"></a><a href="tips_blood_donation.html" style="color:White">Tips on blood donation</a></h4>
+									<h4><a class="fa fa-calendar" style="color:White; padding-right:10px;"></a><a href="cam_calender.html" style="color:White">Camp calendar</a></h4>
+									<h4><a class="fa fa-retweet" style="color:White; padding-right:10px;"></a><a href="resource_center.html" style="color:White">Resource centre</a></h4>
+									<h4><a class="fa fa-picture-o" style="color:White; padding-right:10px;"></a><a href="Media.html" style="color:White">Photo gallery</a></h4>
+								</div>
+							</div>
+                       
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                    
+                    
+                    
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12"></div>
+                    
+                    
+                    
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12 bloodbox" style="padding:5px;">
+                          <div class=" col-md-12 col-sm-12 col-xs-12" style=" border:1px solid #F90; padding:15px;">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                       <center><img src="{% static 'images/bg.png' %}" ></center>
+                                     </div>
+                                     <div class="col-md-9 col-sm-9 col-xs-12 ">
+                                         <div class="center_text">
+                                        <h2>100+</h2>                                        
+                                        <p>Blood Doners</p>
+                                     </div>
+                                </div>
+                                </div>
+                                
+                                
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                       <center><img src="{% static 'images/BR.png' %}" ></center>
+                                     </div>
+                                     <div class="col-md-9 col-sm-9 col-xs-12">
+                                         <div class="center_text">
+                                        <h2>180+</h2>                                        
+                                        <p>Blood Requests</p>
+                                     </div></div>
+                                
+                                </div>
+                                
+                                
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                       <center><img src="{% static 'images/AD.png' %}" ></center>
+                                     </div>
+                                     <div class="col-md-9 col-sm-9 col-xs-12">
+                                         <div class="center_text">
+                                        <h2>80+</h2>                                        
+                                        <p>Active Doners</p>
+                                     </div></div>
+                                
+                                </div>
+                                                               
+                                
+                          </div>
+                    
+                    
+                    </div>
+                    
+                    
+                    
+                    
+                    
+					<!---- About-grids ---->
+					<div class="about-grids col-md-12 col-sm-12 col-xs-12">
+                    
+                    
+                    <section id="counts" class="counts">
+    
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-12" style="margin-bottom:10px;">
+            <div class="count-box center_text2">
+              <i class=" fa fa-bullhorn fa-2x"></i>
+              <span data-toggle="counter-up"> Donors' Speak</span>
+              <p style=" text-align:center">"I donated blood to a needy patient undergoing open heart surgery at GKNM Hospital, Coimbatore. I am happy to be associated with Samarpan Blood Bank and thank them for giving me this opportunity." <br /><b>Dr. XYZ</b><br /><a href="donor_speak.html" style="font-weight:bold;color:#09C">Read More >></a></p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-12" style="margin-bottom:10px">
+            <div class="count-box center_text2">
+              <i class="fa fa-gift fa-2x"></i>
+              <span data-toggle="counter-up">Benefits of Blood Donation</span>
+              <p style=" text-align:center">It feels great to donate!, It's something you can spare - most people have blood to spare... yet, there is still not enough to go around.You will help ensure blood is on the shelf when needed - most people don't think they'll ever need blood, but many do.<br /><br /></p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-12 " style="margin-bottom:10px">
+            <div class="count-box center_text2">
+              <i class="fa fa-newspaper-o fa-2x"></i>
+              <span data-toggle="counter-up">News & Events</span>
+             <p style=" text-align:center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.<br /><br /><a href="news_events.html" style="font-weight:bold;color:#09C">Read More >></a></p>
+            </div>
+          </div>
+
+        <div class="col-lg-12 col-md-12"></div>
+
+<div class="col-lg-4 col-md-12" style="margin-bottom:10px">
+            <div class="count-box center_text2">
+              <i class="fa fa-calendar fa-2x"></i>
+              <span data-toggle="counter-up">Upcoming Projects</span>
+              <p style=" text-align:center">I donated blood to a needy patient. I am happy to be associated with Blood Bank and thank them for giving me this opportunity.<br /><a href="upcoming_events.html" style=" font-weight:bold;color:#09C">Read More..</a></p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-12" style="margin-bottom:10px">
+            <div class="count-box center_text2">
+              <i class="fa fa-bus fa-2x"></i>
+              <span data-toggle="counter-up">Mobile Van</span>
+              <p style=" text-align:center">Mobile Vans have revolutionized blood donation drives in urban & rural domains.<br /><br /><a href="mobile_van.html" style="font-weight:bold;color:#09C">Read More >></a></p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-12 " style="margin-bottom:10px">
+            <div class="count-box center_text2">
+              <i class="fa fa-life-ring fa-2x"></i>
+              <span data-toggle="counter-up">Our Services</span>
+            <p style=" text-align:center">Samarpan Blood Bank is licensed to issue following products our...<br /><br /><a href="services.html" style="font-weight:bold; color:#09C">Read More >></a></p>
+            </div>
+          </div>
+
+
+
+        </div>
+
+    </section>
+    
+    
+    
+						
+                        
+						
+					</div>
+					<!---- About-grids ---->
+				</div>
+				
+			</div>
+            
+            
+			<!---- about ---->
+            
+            <!-- Footer  -->
+           <aside id="ccr-footer-sidebar">
+	<div class="container">
+
+		<ul>
+			<li class="col-md-4">
+				<h5>Samarpan Blood  Centre </h5>
+				
+				<div class="site-logo">
+                
+                    <p style=" color:#FFF; font-size:14px;">
+                     
+                       <span class="fa fa-home"></span>
+                    201 ,2nd Floor, Aaradhya health care, <br />
+                                    Aaradhyaa one earth, H wing, <br />
+                                    Nayadu Colony, Pantnagar, Ghatkopar East, <br />
+                                    Pincode 400075.
+                    </p>
+                    
+                    <p style=" color:#FFF; font-size:14px;">
+                    <span class="fa fa-phone"></span>
+                     +91 022-49603131, +91 022-49644455, +91 022-46093131, +91 022-41235151.<br /><br />
+                         <span class="fa fa-mobile"></span>
+                       +91 703 966 7203, +91 703 966 7204.
+                    </p>
+                    
+                     <p style=" color:#FFF; font-size:14px;">
+                    <span class="fa fa-envelope"></span>
+                    tr@samarpanbloodcentre.org 
+                    
+                    </p>
+                    
+				</div> <!-- / .navbar-header -->
+				
+			</li>
+			<li class="col-md-4">
+				<h5>Samarpan Blood Storage Centre</h5>
+				<div class="site-logo">
+                
+                    <p style=" color:#FFF; font-size:14px;">
+                     
+                       <span class="fa fa-home"></span>
+                       Shree Pragati Foundation's Hira<br /> Mongi Navneet Hospital<br />
+    					Valji Ladha road,<br /> Mulund (W), Mumbai - 4000 080<br />
+                    </p>
+                    
+                    <p style=" color:#FFF; font-size:14px;">
+                    <span class="fa fa-phone"></span>
+                      9594032512, <br />Board Line : 61590 5577.                    
+                    </p>
+                    
+                     <p style=" color:#FFF; font-size:14px;">
+                    <span class="fa fa-envelope"></span>
+                   hm@samarpanbloodcentre.org 
+                    
+                    </p>
+                    
+				</div> <!-- / .navbar-header -->
+				
+			</li>
+			<li class="col-md-4">
+				<h5> Khopoli Mahajan Samarpan Blood Storage Centre</h5>
+				<div class="site-logo">
+                
+                    <p style=" color:#FFF; font-size:14px;">
+                     
+                       <span class="fa fa-home"></span>
+                       G.V.P.B. Saraswati Ma Lohana<br /> Mahajan wadi<br />
+      Opp.Central Bank of India ,<br />Jalaram Nagar, Khopoli,
+<br />
+                    </p>
+                    
+                    <p style=" color:#FFF; font-size:14px;">
+                    <span class="fa fa-phone"></span>
+                            9325102511, 02192-268750                   
+                    </p>
+                    
+                     <p style=" color:#FFF; font-size:14px;">
+                    <span class="fa fa-envelope"></span>
+                   km@samarpanbloodcentre.org
+                    
+                    </p>
+                    
+				</div> <!-- / .navbar-header -->
+				
+			</li>
+            
+            
+			
+		</ul>
+	</div>
+    
+    
+	
+</aside>
+
+			
+			<!--- copy-right ---->
+			<div class="copy-right">
+				<div class="container">
+                
+                  <div class="col-lg-8 col-md-8">
+				<div class="copy-right-left">
+					<p> Samarpan Blood Centre <span class="fa fa-copyright"></span> 2021 All Rights Reserved | <b>Powered by :&nbsp;</b><a href="http://stridessoftware.com/" style="color:Black;" target="_blank">Strides Software Solution Pvt Ltd</a></p>
+					
+					<script type="text/javascript">
+									$(document).ready(function() {
+										/*
+										var defaults = {
+								  			containerID: 'toTop', // fading element id
+											containerHoverID: 'toTopHover', // fading element hover id
+											scrollSpeed: 1200,
+											easingType: 'linear' 
+								 		};
+										*/
+										
+										$().UItoTop({ easingType: 'easeOutQuart' });
+										
+									});
+								</script>
+					<a href="#" id="toTop" style="display: block;" class="btn btn-info"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+				</div>
+			
+				<div class="clearfix"> </div>
+                </div>
+                 <div class="col-lg-4 col-md-4" style="text-align:right">
+					<a class=" fa fa-facebook-square fa-2x" href="https://www.facebook.com/samarpanbloodcentreghatkopar" target="_blank"></a>
+                    <a class=" fa  fa-twitter-square fa-2x" href="#"></a>
+                    <a class=" fa fa-youtube-square fa-2x" href="#"></a>
+                    <a class=" fa fa-linkedin-square fa-2x" href="#"></a>
+     </div>
+     
+			</div>
+			</div>
+			<!--- copy-right ---->
+            
+            
+            <script src="{% static 'js/bootstrap.min.js' %}"></script>
+            
+            
+	</body>
+</html>
+
