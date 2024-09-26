@@ -1,0 +1,93 @@
+{% extends 'samarpan/base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="about" class="about">
+   <div class="col-md-12 col-sm-12 col-xs-12 bloodbox" style="padding:5px;">
+                 <div class=" col-md-12 col-sm-12 col-xs-12" style=" border:1px solid #F90; padding:15px; ">
+                       <div class="col-md-12 col-sm-12 col-xs-12">
+                          
+                                <div class="center_text">
+                               <center><h2>OTHER ACTIVITIES</h2>      </center>   
+                          
+                       </div>
+                       </div>
+               </div>
+       </div>
+   
+         <div class="container">                    
+         <div class="col-md-12 col-sm-12 col-xs-12"></div>                     
+         <div class="about-grids col-md-7 col-sm-7 col-xs-12">                  
+                  
+               <section id="installation" style="margin-top:-80px;">        
+<div class="col-md-12 col-sm-12 col-xs-12">
+<h3 class="text-danger">Pathology Centre- Here we provide  Pick up of blood samples and provide tests in a subsidize rates.</h3>
+    <h4 style="line-height:25px">- People can register their tests through the portal, we will be sending person for the sample collection.</b>  </h4>   
+     <h4 style="line-height:25px">- Dialysis Centre</b>  </h4>    
+      <h4 style="line-height:25px">- Organ Donation</b>  </h4>    
+              
+   </div>
+   
+  
+
+<div class="col-md-12 col-sm-12 col-xs-12"></div>
+</section>  
+</div>
+<div class="col-md-5 col-sm-5 col-xs-12" style="margin-top:30px;">
+     <div class="col-md-12 col-sm-12 col-xs-12" style="border:1px solid #069; background-color:#045374; color:#fff">
+      <h1 class="text-info" style="color:#fff">Registration</h1>
+       <form method="post" action="http://nathvalleyschool.com/form/samarpanBB/Other_activites.php" role="form"> 
+     
+<div style="padding:10px 0px 10px 0px;">
+        <!--CONTENT HERE-->
+        <div class="col-md-12 col-sm-12 col-xs-12" style="padding-bottom:10px">
+               <span class="star">*</span><label>Name</label>
+               <input name="txtCompany" type="text" id="txt_CompanyName" size="40" class="form-control" />
+        </div>
+     
+        
+       <div class="col-md-12 col-sm-12 col-xs-12" style="padding-bottom:10px">
+                 <span class="star">*</span><label>Mobile Number</label>
+               <input name="phone" type="text" id="txt_Phone" class="form-control" data oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" />
+        </div>
+        
+      <div class="col-md-12 col-sm-12 col-xs-12" style="padding-bottom:10px">
+                <span class="star">*</span><label>Email Id</label>
+               <input name="email" type="email" id="txt_Email" class="form-control" />
+        </div>
+        
+         <div class="col-md-12 col-sm-12 col-xs-12" style="padding-bottom:10px">
+                 <label>Address</label>
+               <input name="txtAddres" type="text" id="txt_Addres" size="40" class="form-control" />
+        </div>
+        
+        <div class="col-md-12 col-sm-12 col-xs-12" style="padding-bottom:10px">
+        <span class="star">*</span><label>Select Service</label>
+            <select name="txtTest" id="txt_test" class="form-control">
+               <option></option>
+               <option>Pathology Centre</option>
+               <option>Dialysis Centre</option>
+               <option>Organ Donation</option>                        
+           </select>
+        </div>
+        
+        
+       <div class="col-md-12 col-sm-12 col-xs-12" style="padding-top:10px">
+                <center> <input type="submit" name="cmdSubmit" id="cmdSubmit" value="Submit" 
+                class="btn btn-info btn-lg" onclick="return ValidateForm_SendMail();" />
+                <input type="reset" name="cmdReset" id="cmdReset" value="Reset" class="btn btn-info btn-lg" /></center>
+        </div>
+        
+        
+        
+           <div class="col-md-12 col-sm-12 col-xs-12">
+           <br /><br />
+           </div></div>
+           </form>
+           
+     </div>
+      
+</div>
+  </div>
+</div>
+   {% endblock %}
