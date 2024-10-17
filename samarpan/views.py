@@ -56,10 +56,24 @@ def add_student(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('student_success')  # Define this URL for a success message
+            return redirect('success')  # Redirect to a success page or back to the form
     else:
         form = StudentForm()
+
     return render(request, 'samarpan/add_student.html', {'form': form})
+
+    # if request.method == 'POST':
+    #     form = StudentForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()  # Process your form data
+    #         return redirect('student_success')  # Redirect after successful submission
+    # else:
+    #     form = StudentForm()
+    
+    # # Populate the institution field with all institutions
+    # form.fields['institution'].queryset = Institutions.objects.all()
+
+    # return render(request, 'samarpan/add_student.html', {'form': form})
 
 def student_success(request):
     return render(request, 'samarpan/student_success.html')  # Create this template
@@ -67,6 +81,7 @@ def student_success(request):
 def load_institutions(request):
     # Get the institution_type from the request
     institution_type = request.GET.get('institution_type')
+    
 
     if not institution_type:
         return JsonResponse({'error': 'institution_type not provided'}, status=400)

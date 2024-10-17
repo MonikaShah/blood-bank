@@ -17,5 +17,5 @@ urlpatterns = [
     path('institution_success/', views.institution_success, name='institution_success'),  # Success page
     path('add_student/', views.add_student, name='add_student'),
     path('student_success/', views.student_success, name='student_success'), 
-    path('load-institutions/', views.load_institutions, name='load_institutions'),
+    path('load_institutions/', views.load_institutions, name='load_institutions'),
 ]

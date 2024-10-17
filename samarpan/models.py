@@ -4,14 +4,14 @@ from django.db import models
 class Institutions(models.Model):
     # Choices for types of institutions
        
-    INSTITUTION_TYPE_CHOICES = [
+    INSTITUTION_TYPE_CHOICES = (
         ('School', 'School'),
         ('College', 'College'),
-    ]
+    )
     
     # Fields
     institution_name = models.CharField(max_length=255, verbose_name="Institution Name")
-    institution_type = models.CharField(max_length=7, choices=INSTITUTION_TYPE_CHOICES, verbose_name="Institution Type")
+    institution_type = models.CharField(max_length=7, choices=INSTITUTION_TYPE_CHOICES, verbose_name="Institution Type",blank=True, null=True)
     address = models.TextField(verbose_name="Address")
     city = models.CharField(max_length=100, verbose_name="City")
     email = models.EmailField(verbose_name="Email")

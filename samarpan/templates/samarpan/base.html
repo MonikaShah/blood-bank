@@ -16,8 +16,10 @@
     <link href="{% static 'css/font-awesome.min.css' %}" rel='stylesheet' type='text/css' />
     <link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
     <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/move-top.js' %}"></script>
     <script src="{% static 'js/easing.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body style="background: #fff;">
@@ -25,8 +27,7 @@
     <div id="home" class="header">
         <div class="top-header">
             <div class="container">
-                <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                    <div class="container">
+                <nav class="navbar navbar-inverse navbar-fixed-top navbar-expand-lg" role="navigation">                    <div class="container">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                 <span class="sr-only">Toggle navigation</span>
@@ -41,8 +42,7 @@
                             </div>
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                            <ul class="nav navbar-nav navbar-right">                                <li class="active"><a href="{% url 'home' %}">Home</a></li>
                                 <li><a href="{% url 'about' %}">About Us</a></li>
                                 <li><a href="{% url 'product' %}">Product</a></li>
                                 <li><a href="{% url 'organizer' %}">Organizer</a></li>
@@ -52,9 +52,19 @@
                                 <li><a href="{% url 'gallery' %}">Gallery</a></li>
                                 <li><a href="{% url 'thalassemia' %}">Thalassemia</a></li>
                                 <li><a href="{% url 'contact' %}">Contact</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="addDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Add
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="addDropdown">
+                                        <a class="dropdown-item text-center" href="{% url 'add_institution' %}" > Add Institute</a><br>
+                                        <a class="dropdown-item text-center" href="{% url 'add_student' %}" > Add Student</a>
+                                    </div>
+                                </li>
                                 <li style="background-color:#C33; color:#FFF">
                                     <a href="{% url 'donation' %}" style="color:#FFF; font-weight:bold"> Donation <span class="fa fa-rupee"></span></a>
                                 </li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -173,7 +183,7 @@
 					<p> Samarpan Blood Centre <span class="fa fa-copyright"></span> 2021 All Rights Reserved | <b>Powered by :&nbsp;</b><a href="http://stridessoftware.com/" style="color:Black;" target="_blank">Strides Software Solution Pvt Ltd</a></p>
 					
 					<script type="text/javascript">
-									$(document).ready(function() {
+									jQuery(document).ready(function() {
 										/*
 										var defaults = {
 								  			containerID: 'toTop', // fading element id
@@ -210,8 +220,4 @@
 	</body>
 </html>
 
-    </footer>
-
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-</body>
-</html>
+    

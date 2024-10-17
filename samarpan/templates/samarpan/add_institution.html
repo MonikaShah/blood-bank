@@ -1,0 +1,23 @@
+{% extends 'samarpan/base.html' %}
+{% load static %}
+{% block content %}
+<div id="about" class="about">
+    <div class="col-md-12 col-sm-12 col-xs-12 bloodbox" style="padding:5px; ">
+        <div class=" col-md-12 col-sm-12 col-xs-12" style=" border:1px solid #F90; padding:15px; ">
+           <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="center_text">
+                 <center><h2>Add Institution </h2>      </center>   
+              </div>
+           </div>
+        </div>
+     </div>
+    <div class="container"><br>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Render form fields with default <p> tags -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    </div>
+    {% endblock %}  
+
