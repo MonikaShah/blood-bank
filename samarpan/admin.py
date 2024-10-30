@@ -8,7 +8,7 @@ class InstitutionAdmin(admin.ModelAdmin):
     list_filter = ['institution_type', 'city']
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'middle_name', 'surname', 'mobile', 'email', 'institution', 'blood_group', 'gender')
+    list_display = ('first_name', 'middle_name', 'surname','dob', 'mobile', 'email', 'institution', 'blood_group', 'gender')
     list_filter = ('institution', 'blood_group', 'gender', 'year', 'stream')
 
 # Register your models with the admin site

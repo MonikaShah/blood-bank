@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,26 +9,27 @@
     <meta content='http://samarpanbloodcentre.org/' property='og:url'>
     <meta content="WELCOME TO SAMARPAN BLOOD CENTRE" property='og:title'>
     <meta content='http://samarpanbloodcentre.org/images/slide1.jpg' property='og:image'>
-    <meta content="We take proud to inform you that the Samarpan Blood Bank..." property='og:description'>
+    <meta content="We take pride in informing you that the Samarpan Blood Bank..." property='og:description'>
     <meta name="facebook-domain-verification" content="8jo8fj5tx5c6n8ogk802j7wnbdg05y" />
 
     <title>WELCOME TO SAMARPAN BLOOD CENTRE</title>
     <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
     <link href="{% static 'css/font-awesome.min.css' %}" rel='stylesheet' type='text/css' />
     <link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
+    <!-- <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script> -->
     <script src="{% static 'js/move-top.js' %}"></script>
     <script src="{% static 'js/easing.js' %}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-<body style="background: #fff;">
+<body style="display: flex; flex-direction: column; min-height: 100vh; background: #fff;">
     <!-- Header section -->
     <div id="home" class="header">
         <div class="top-header">
             <div class="container">
-                <nav class="navbar navbar-inverse navbar-fixed-top navbar-expand-lg" role="navigation">                    <div class="container">
+                <nav class="navbar navbar-inverse navbar-fixed-top navbar-expand-lg" role="navigation">
+                    <div class="container">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                 <span class="sr-only">Toggle navigation</span>
@@ -42,7 +44,8 @@
                             </div>
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">                                <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="active"><a href="{% url 'home' %}">Home</a></li>
                                 <li><a href="{% url 'about' %}">About Us</a></li>
                                 <li><a href="{% url 'product' %}">Product</a></li>
                                 <li><a href="{% url 'organizer' %}">Organizer</a></li>
@@ -52,19 +55,25 @@
                                 <li><a href="{% url 'gallery' %}">Gallery</a></li>
                                 <li><a href="{% url 'thalassemia' %}">Thalassemia</a></li>
                                 <li><a href="{% url 'contact' %}">Contact</a></li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="addDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Add
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="addDropdown">
-                                        <a class="dropdown-item text-center" href="{% url 'add_institution' %}" > Add Institute</a><br>
-                                        <a class="dropdown-item text-center" href="{% url 'add_student' %}" > Add Student</a>
-                                    </div>
-                                </li>
+                                {% if request.user.is_authenticated %}
+                                    {% if request.user|has_group:"Manager" %}
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="addDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Add
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="addDropdown">
+                                                <a class="dropdown-item text-center" href="{% url 'add_institution' %}">Add Institute</a><br>
+                                                <a class="dropdown-item text-center" href="{% url 'add_student' %}">Add Student</a>
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                {% endif %}
                                 <li style="background-color:#C33; color:#FFF">
-                                    <a href="{% url 'donation' %}" style="color:#FFF; font-weight:bold"> Donation <span class="fa fa-rupee"></span></a>
+                                    <a href="{% url 'donation' %}" style="color:#FFF; font-weight:bold">Donation <span class="fa fa-rupee"></span></a>
                                 </li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -73,151 +82,97 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Content block -->
-    <!-- <div class="container"> -->
+    <main style="flex: 1;">
         {% block content %}
-        <!-- Placeholder for individual page content -->
         {% endblock %}
-    <!-- </div> -->
+    </main>
 
     <!-- Footer section -->
     <footer>
         <aside id="ccr-footer-sidebar">
             <div class="container">
-        
-                <ul>
+                <ul class="row">
                     <li class="col-md-4">
-                        <h5>Samarpan Blood  Centre </h5>
-                        
+                        <h5>Samarpan Blood Centre</h5>
                         <div class="site-logo">
-                        
-                            <p style=" color:#FFF; font-size:14px;">
-                             
-                               <span class="fa fa-home"></span>
-                            201 ,2nd Floor, Aaradhya health care, <br />
-                                            Aaradhyaa one earth, H wing, <br />
-                                            Nayadu Colony, Pantnagar, Ghatkopar East, <br />
-                                            Pincode 400075.
+                            <p style="color:#FFF; font-size:14px;">
+                                <span class="fa fa-home"></span>
+                                201 ,2nd Floor, Aaradhya Health Care,<br />
+                                Aaradhyaa One Earth, H Wing,<br />
+                                Nayadu Colony, Pantnagar, Ghatkopar East,<br />
+                                Pincode 400075.
                             </p>
-                            
-                            <p style=" color:#FFF; font-size:14px;">
-                            <span class="fa fa-phone"></span>
-                             +91 022-49603131, +91 022-49644455, +91 022-46093131, +91 022-41235151.<br /><br />
-                                 <span class="fa fa-mobile"></span>
-                               +91 703 966 7203, +91 703 966 7204.
+                            <p style="color:#FFF; font-size:14px;">
+                                <span class="fa fa-phone"></span>
+                                +91 022-49603131, +91 022-49644455, +91 022-46093131, +91 022-41235151.<br /><br />
+                                <span class="fa fa-mobile"></span>
+                                +91 703 966 7203, +91 703 966 7204.
                             </p>
-                            
-                             <p style=" color:#FFF; font-size:14px;">
-                            <span class="fa fa-envelope"></span>
-                            tr@samarpanbloodcentre.org 
-                            
+                            <p style="color:#FFF; font-size:14px;">
+                                <span class="fa fa-envelope"></span>
+                                tr@samarpanbloodcentre.org
                             </p>
-                            
-                        </div> <!-- / .navbar-header -->
-                        
+                        </div>
                     </li>
                     <li class="col-md-4">
                         <h5>Samarpan Blood Storage Centre</h5>
                         <div class="site-logo">
-                        
-                            <p style=" color:#FFF; font-size:14px;">
-                             
-                               <span class="fa fa-home"></span>
-                               Shree Pragati Foundation's Hira<br /> Mongi Navneet Hospital<br />
-                                Valji Ladha road,<br /> Mulund (W), Mumbai - 4000 080<br />
+                            <p style="color:#FFF; font-size:14px;">
+                                <span class="fa fa-home"></span>
+                                Shree Pragati Foundation's Hira<br />
+                                Mongi Navneet Hospital<br />
+                                Valji Ladha Road,<br /> Mulund (W), Mumbai - 4000 080<br />
                             </p>
-                            
-                            <p style=" color:#FFF; font-size:14px;">
-                            <span class="fa fa-phone"></span>
-                              9594032512, <br />Board Line : 61590 5577.                    
+                            <p style="color:#FFF; font-size:14px;">
+                                <span class="fa fa-phone"></span>
+                                9594032512, <br />Board Line : 61590 5577.
                             </p>
-                            
-                             <p style=" color:#FFF; font-size:14px;">
-                            <span class="fa fa-envelope"></span>
-                           hm@samarpanbloodcentre.org 
-                            
+                            <p style="color:#FFF; font-size:14px;">
+                                <span class="fa fa-envelope"></span>
+                                hm@samarpanbloodcentre.org
                             </p>
-                            
-                        </div> <!-- / .navbar-header -->
-                        
+                        </div>
                     </li>
                     <li class="col-md-4">
-                        <h5> Khopoli Mahajan Samarpan Blood Storage Centre</h5>
+                        <h5>Khopoli Mahajan Samarpan Blood Storage Centre</h5>
                         <div class="site-logo">
-                        
-                            <p style=" color:#FFF; font-size:14px;">
-                             
-                               <span class="fa fa-home"></span>
-                               G.V.P.B. Saraswati Ma Lohana<br /> Mahajan wadi<br />
-              Opp.Central Bank of India ,<br />Jalaram Nagar, Khopoli,
-        <br />
+                            <p style="color:#FFF; font-size:14px;">
+                                <span class="fa fa-home"></span>
+                                G.V.P.B. Saraswati Ma Lohana<br />
+                                Mahajan Wadi<br />
+                                Opp. Central Bank of India,<br /> Jalaram Nagar, Khopoli,
                             </p>
-                            
-                            <p style=" color:#FFF; font-size:14px;">
-                            <span class="fa fa-phone"></span>
-                                    9325102511, 02192-268750                   
+                            <p style="color:#FFF; font-size:14px;">
+                                <span class="fa fa-phone"></span>
+                                9325102511, 02192-268750
                             </p>
-                            
-                             <p style=" color:#FFF; font-size:14px;">
-                            <span class="fa fa-envelope"></span>
-                           km@samarpanbloodcentre.org
-                            
+                            <p style="color:#FFF; font-size:14px;">
+                                <span class="fa fa-envelope"></span>
+                                km@samarpanbloodcentre.org
                             </p>
-                            
-                        </div> <!-- / .navbar-header -->
-                        
+                        </div>
                     </li>
-                    
                 </ul>
             </div>
-         </aside>
-        
-                  
-       	<!--- copy-right ---->
-			<div class="copy-right">
-				<div class="container">
-                
-                  <div class="col-lg-8 col-md-8">
-				<div class="copy-right-left">
-					<p> Samarpan Blood Centre <span class="fa fa-copyright"></span> 2021 All Rights Reserved | <b>Powered by :&nbsp;</b><a href="http://stridessoftware.com/" style="color:Black;" target="_blank">Strides Software Solution Pvt Ltd</a></p>
-					
-					<script type="text/javascript">
-									jQuery(document).ready(function() {
-										/*
-										var defaults = {
-								  			containerID: 'toTop', // fading element id
-											containerHoverID: 'toTopHover', // fading element hover id
-											scrollSpeed: 1200,
-											easingType: 'linear' 
-								 		};
-										*/
-										
-										$().UItoTop({ easingType: 'easeOutQuart' });
-										
-									});
-								</script>
-					<a href="#" id="toTop" style="display: block;" class="btn btn-info"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-				</div>
-			
-				<div class="clearfix"> </div>
-                </div>
-                 <div class="col-lg-4 col-md-4" style="text-align:right">
-					<a class=" fa fa-facebook-square fa-2x" href="https://www.facebook.com/samarpanbloodcentreghatkopar" target="_blank"></a>
-                    <a class=" fa  fa-twitter-square fa-2x" href="#"></a>
-                    <a class=" fa fa-youtube-square fa-2x" href="#"></a>
-                    <a class=" fa fa-linkedin-square fa-2x" href="#"></a>
-     </div>
-     
-			</div>
-			</div>
-			<!--- copy-right ---->
-            
-            
-            <script src="{% static 'js/bootstrap.min.js' %}"></script>
-            
-            
-	</body>
-</html>
+        </aside>
 
-    
+        <!-- Copy-right -->
+        <div class="copy-right">
+            <div class="container text-center">
+                <p>Samarpan Blood Centre &copy; 2021 All Rights Reserved | Powered by <a href="http://stridessoftware.com/" target="_blank" style="color: Black;">Strides Software Solution Pvt Ltd</a></p>
+            </div>
+        </div>
+    </footer>
+
+   
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $().UItoTop({ easingType: 'easeOutQuart' });
+        });
+    </script>
+</body>
+    </html>

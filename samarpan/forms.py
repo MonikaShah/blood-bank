@@ -1,6 +1,7 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from .models import Students,Institutions
-
+from django.http import JsonResponse
 from django import forms
 from .models import Students  # Make sure to import your Students model
 
@@ -15,62 +16,45 @@ class StudentForm(forms.ModelForm):
         widgets = {
             'dob': forms.DateInput(attrs={'type': 'date'}),
         }
-    # class Meta:
-    #     model = Students
-    #     fields = [
-    #         'first_name', 'middle_name', 'surname', 'mobile', 'email', 
-    #         'institution', 'pincode', 'dob', 
-    #         'blood_group', 'gender', 'year', 'stream', 'grade'
-    #     ]
-    #     widgets = {
-    #         'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter First Name'}),
-    #         'middle_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Middle Name', 'required': False}),
-    #         'surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Surname'}),
-    #         'mobile': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Mobile Number'}),
-    #         'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter Email'}),
-    #         # 'institution_type': forms.Select(attrs={'class': 'form-control', 'id': 'institution-type'}),
-    #         'institution': forms.Select(attrs={'class': 'form-control', 'id': 'institution-select'}),
-    #         'pincode': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Pincode'}),
-    #         'dob': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-    #         'blood_group': forms.Select(choices=Students.BLOOD_GROUP_CHOICES, attrs={'class': 'form-control'}),
-    #         'gender': forms.Select(choices=Students.GENDER_CHOICES, attrs={'class': 'form-control'}),
-    #         'year': forms.Select(choices=Students.YEAR_CHOICES, attrs={'class': 'form-control', 'id': 'year-field', 'style': 'display:none;'}),
-    #         'stream': forms.Select(choices=Students.STREAM_CHOICES, attrs={'class': 'form-control', 'id': 'stream-field', 'style': 'display:none;'}),
-    #         'grade': forms.Select(choices=Students.GRADE_CHOICES, attrs={'class': 'form-control', 'id': 'grade-field', 'style': 'display:none;'}),
-    #     }
-    # def __init__(self, *args, **kwargs):
-    #     super(StudentForm, self).__init__(*args, **kwargs)
-    #     self.fields['institution'].queryset = Institutions.objects.none()
+        error_messages = {
+            'first_name': {
+                'required': 'First name is required.',
+            },
+            'mobile': {
+                'required': 'Mobile number is required.',
+            },
+            'dob': {
+                'required': 'Date of birth is required.',
+            },
+            'surname':{
+                'required': 'Surname is required.',
+            },
+            'institution_type':{
+                'required': 'Please Choose institution type.',
+            },
+            'institution':{
+                'required': 'Please Choose institution name.',
+            }
+            # You can add similar custom messages for other fields as needed
+        }
 
-        # if 'institution_type' in self.data:
-        #     institution_type = self.data.get('institution_type')
-        #     self.fields['institution'].queryset = Institutions.objects.filter(type=institution_type)
-        # elif self.instance.pk:
-        #     self.fields['institution'].queryset = Institutions.objects.filter(type=self.instance.institution_type)
-    # institution = forms.ModelChoiceField(queryset=Institutions.objects.all(), empty_label="Select an Institution")
+    def clean(self):
+        cleaned_data = super().clean()
+        print(f"Cleaned data: {cleaned_data}")  # Add this to inspect cleaned data
+        mobile = cleaned_data.get("mobile")
+        dob = cleaned_data.get("dob")
 
-    # class Meta:
-    #     model = Students
-    #     fields = ['first_name', 'middle_name', 'surname', 'mobile', 'email', 'institution', 'pincode', 'dob', 'grade', 'year', 'stream', 'blood_group', 'gender']
-
-    # # Add CSS classes to the desired fields
-    # def __init__(self, *args, **kwargs):
-    #     super(StudentForm, self).__init__(*args, **kwargs)
-    #     self.fields['first_name'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['middle_name'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['surname'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['mobile'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['email'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['institution'].widget.attrs.update({'class': 'form-control', 'id': 'institution-select'})
-    #     self.fields['pincode'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['dob'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['grade'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['year'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['stream'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['blood_group'].widget.attrs.update({'class': 'form-control'})
-    #     self.fields['gender'].widget.attrs.update({'class': 'form-control'})
-
-
+        print(f"Mobile: {mobile}, DOB: {dob}")
+        # Check if a student with the same mobile and dob already exists
+        if mobile and dob:
+            if Students.objects.filter(mobile=mobile, dob=dob).exists():
+                # self.add_error(None, "A student with this mobile number and date of birth already exists.")
+                raise ValidationError("A student with this mobile number and date of birth already exists.")  # Raise validation error
+                # return JsonResponse({'exists': True})  # AJAX response for duplicates
+            
+    
+        return cleaned_data
+    
 class InstitutionForm(forms.ModelForm):
     class Meta:
         model = Institutions  # The model to be used for this form

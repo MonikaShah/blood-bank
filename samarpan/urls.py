@@ -1,3 +1,4 @@
+from django.contrib.auth import views as auth_views
 from django.urls import path
 from . import views
 
@@ -18,4 +19,7 @@ urlpatterns = [
     path('add_student/', views.add_student, name='add_student'),
     path('student_success/', views.student_success, name='student_success'), 
     path('load_institutions/', views.load_institutions, name='load_institutions'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+        # path("check-student-uniqueness/", views.check_student_uniqueness, name="check_student_uniqueness"),
 ]

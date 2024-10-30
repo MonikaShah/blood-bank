@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.http import JsonResponse
+from django.contrib import messages
 from .forms import InstitutionForm,StudentForm
 from .models import Institutions
+import json
 
 # Create your views here.
 def home(request):
@@ -52,31 +54,56 @@ def institution_success(request):
     return render(request, 'samarpan/institution_success.html')  # Create this template
 
 def add_student(request):
+    # print("Form submitted")
     if request.method == 'POST':
         form = StudentForm(request.POST)
+        print(request.POST)
+        institution_type = request.POST.get('institution_type')  # Get institution type from POST
+        institution_name = request.POST.get('institution')  # Get institution from POST
+        
         if form.is_valid():
+            
+            # Save the form data
             form.save()
-            return redirect('success')  # Redirect to a success page or back to the form
+            messages.success(request, 'Student details added successfully.')
+            return redirect('student_success')  # Redirect to prevent resubmission
+        # print(form.errors)
+        else:
+            # Check for specific error messages
+            print(form.errors)
+            for error in form.non_field_errors():
+                messages.error(request, error)
+
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
+            
     else:
         form = StudentForm()
-
-    return render(request, 'samarpan/add_student.html', {'form': form})
-
-    # if request.method == 'POST':
-    #     form = StudentForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()  # Process your form data
-    #         return redirect('student_success')  # Redirect after successful submission
-    # else:
-    #     form = StudentForm()
+        
+    institutions = Institutions.objects.all()
+    print("Institutions:", institutions)  # Debug print
+    return render(request, 'samarpan/add_student.html', {
+        'form': form, 
+        'institutions': institutions,
+        # 'institution_type': institution_type,  # Pass selected institution type
+        # 'institution_name': institution_name,
+          })
     
-    # # Populate the institution field with all institutions
-    # form.fields['institution'].queryset = Institutions.objects.all()
-
-    # return render(request, 'samarpan/add_student.html', {'form': form})
-
 def student_success(request):
     return render(request, 'samarpan/student_success.html')  # Create this template
+
+# def check_student_uniqueness(request):
+#     if request.method == "POST":
+#         data = json.loads(request.body)
+#         mobile = data.get("mobile")
+#         dob = data.get("dob")
+
+#         # Check if student with same mobile and DOB exists
+#         exists = Students.objects.filter(mobile=mobile, dob=dob).exists()
+        
+#         return JsonResponse({"exists": exists})
+#     return JsonResponse({"error": "Invalid request"}, status=400)
 
 def load_institutions(request):
     # Get the institution_type from the request
