@@ -64,7 +64,7 @@
                                 <!-- <div>Authenticated User: {{ request.user.username }}</div>
                                 <div>Groups: {{ request.user.groups.all }}</div> -->
                                     {% if request.user|has_group:"Manager" %}
-                                        <li class="nav-item dropdown">
+                                        <!-- <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="addDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Add
                                             </a>
@@ -72,6 +72,14 @@
                                                 <a class="dropdown-item text-center" href="{% url 'add_institution' %}">Add Institute</a><br>
                                                 <a class="dropdown-item text-center" href="{% url 'add_student' %}">Add Student</a>
                                             </div>
+                                        </li> -->
+                                        <li class="nav-item">
+                                            <label for="addDropdown" class="nav-link">Add</label>
+                                            <select id="addDropdown" class="form-control" onchange="location = this.value;">
+                                                <option value="" disabled selected>Select an option</option>
+                                                <option value="{% url 'add_institution' %}">Add Institute</option>
+                                                <option value="{% url 'add_student' %}">Add Student</option>
+                                            </select>
                                         </li>
                                     {% endif %}
                                     <li><a href="{% url 'logout' %}">Logout</a></li>
