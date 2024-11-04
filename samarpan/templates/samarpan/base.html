@@ -21,11 +21,40 @@
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script> -->
     <script src="{% static 'js/move-top.js' %}"></script>
     <script src="{% static 'js/easing.js' %}"></script>
-    <script>
-        $(document).ready(function(){
-            $('.dropdown-toggle').dropdown();
-        });
-    </script>
+    <style>
+    .custom-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .dropdown-label {
+        cursor: pointer;
+        padding: 10px;
+        background-color: #f8f9fa; /* Light background */
+        border: 1px solid #ccc; Light border
+        border-radius: 4px; Rounded corners
+    }
+    
+    .dropdown-content {
+        display: none; /* Hidden by default */
+        position: absolute;
+        background-color: white; /* White background */
+        min-width: 160px; /* Set minimum width */
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow effect */
+        z-index: 1; /* Stack above other elements */
+    }
+    
+    .dropdown-content a {
+        color: black; /* Text color */
+        padding: 12px 16px; /* Padding */
+        text-decoration: none; /* No underline */
+        display: block; /* Block display */
+    }
+    
+    .dropdown-content a:hover {
+        background-color: #f1f1f1; /* Hover effect */
+    }
+</style>
 </head>
 
 <body style="display: flex; flex-direction: column; min-height: 100vh; background: #fff;">
@@ -73,13 +102,12 @@
                                                 <a class="dropdown-item text-center" href="{% url 'add_student' %}">Add Student</a>
                                             </div>
                                         </li> -->
-                                        <li class="nav-item">
-                                            <label for="addDropdown" class="nav-link">Add</label>
-                                            <select id="addDropdown" class="form-control" onchange="location = this.value;">
-                                                <option value="" disabled selected>Select an option</option>
-                                                <option value="{% url 'add_institution' %}">Add Institute</option>
-                                                <option value="{% url 'add_student' %}">Add Student</option>
-                                            </select>
+                                        <li class="nav-item custom-dropdown">
+                                            <div class="dropdown-label" onclick="toggleDropdown()">Add</div>
+                                            <div class="dropdown-content" id="dropdownContent">
+                                                <a href="{% url 'add_institution' %}">Add Institute</a>
+                                                <a href="{% url 'add_student' %}">Add Student</a>
+                                            </div>
                                         </li>
                                     {% endif %}
                                     <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -188,6 +216,21 @@
         jQuery(document).ready(function() {
             $().UItoTop({ easingType: 'easeOutQuart' });
         });
+        
+        function toggleDropdown() {
+            const dropdownContent = document.getElementById("dropdownContent");
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-label')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].style.display = "none";
+                }
+            }
+        };
     </script>
 </body>
     </html>
