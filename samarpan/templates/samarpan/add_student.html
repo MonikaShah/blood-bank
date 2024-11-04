@@ -1,6 +1,23 @@
 {% extends 'samarpan/base.html' %}
+{% load custom_filters %}
 {% load static %}
+
 {% block content %}
+<style>
+    .invalid-feedback {
+        color: red; /* Ensures the error text is red */
+    }
+    .alert {
+        margin-bottom: 1rem; /* Adjust spacing between alerts */
+    }
+    .form-group {
+        margin-bottom: 1.2rem; /* Adjust spacing between form fields */
+    }
+    .container {
+        padding-top: 20px; /* Adjust to minimize space above the form */
+    }
+</style>
+
 <div id="about" class="about">
     <div class="col-md-12 col-sm-12 col-xs-12 bloodbox" style="padding:5px;">
         <div class="col-md-12 col-sm-12 col-xs-12" style="border:1px solid #F90; padding:15px;">
@@ -11,80 +28,221 @@
             </div>
         </div>
     </div>
+   
+        <!-- Display messages here -->
+
+        
     <div class="container"><br>
-        <form method="POST" action="{% url 'add_student' %}">
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        
+       
+        <form method="POST" action="{% url 'add_student' %}" >
             {% csrf_token %}
+
+            <!-- Institution Type Selection -->
+            <div class="form-group">
+                <label for="institution_type">Choose Institution Type</label>
+                <select id="institution_type" class="form-control" name="institution_type" required>
+                    <option value="">Select Institution Type</option>
+                    <option value="School" {% if institution_type == "School" %}selected{% endif %}>School</option>
+                    <option value="College" {% if institution_type == "College" %}selected{% endif %}>College</option>
+                </select>
+               
+            </div>
+
+            <!-- Institution Name Selection -->
+            <div class="form-group" id="institution-name-field" style="display: none;">
+                <label for="institution_name">Choose Institution</label>
+                <select id="institution_name" class="form-control" name="institution" required>
+                    <option value="">Select Institution</option>
+                    {% for inst in institutions %}
+                         <option value="{{ inst.id }}" data-type="{{ inst.institution_type }}">{{ inst.institution_name }}</option>
+                    {% endfor %}
+                </select>
+                
+            </div>
+
+            <!-- Student Details -->
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    {{ form.first_name.label_tag }} {{ form.first_name }}
+                    {{ form.first_name.label_tag }} {{ form.first_name|add_class:"form-control" }}
+                    {% if form.first_name.errors %}
+                        <div class="alert alert-danger">{{ form.first_name.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="form-group col-md-4">
-                    {{ form.middle_name.label_tag }} {{ form.middle_name }}
+                    {{ form.middle_name.label_tag }} {{ form.middle_name|add_class:"form-control" }}
                 </div>
                 <div class="form-group col-md-4">
-                    {{ form.surname.label_tag }} {{ form.surname }}
+                    {{ form.surname.label_tag }} {{ form.surname|add_class:"form-control" }}
                 </div>
             </div>
             <div class="form-group">
-                {{ form.mobile.label_tag }} {{ form.mobile }}
+                {{ form.mobile.label_tag }} 
+                {{ form.mobile|add_class:"form-control" }}
+                {% if form.mobile.errors %}
+                    <div class="invalid-feedback">
+                        {{ form.mobile.errors }}
+                    </div>
+                {% endif %}
             </div>
             <div class="form-group">
-                {{ form.email.label_tag }} {{ form.email }}
-            </div>
-            <!-- Institution Dropdown -->
-            <div class="form-group">
-                {{ form.institution.label_tag }} {{ form.institution }}
+                {{ form.email.label_tag }} 
+                {{ form.email|add_class:"form-control" }}
+              
             </div>
             <div class="form-group">
-                {{ form.pincode.label_tag }} {{ form.pincode }}
+                {{ form.pincode.label_tag }} {{ form.pincode|add_class:"form-control" }}
             </div>
             <div class="form-group">
-                {{ form.dob.label_tag }} {{ form.dob }}
+                {{ form.dob.label_tag }} {{ form.dob|add_class:"form-control" }}
+                {% if form.dob.errors %}
+                    <div class="invalid-feedback">
+                        {{ form.dob.errors }}
+                    </div>
+                {% endif %}
             </div>
-            
+
             <!-- Conditional Fields for Institution Type -->
             <div class="form-group" id="school-fields" style="display: none;">
-                {{ form.grade.label_tag }} {{ form.grade }}
+                {{ form.grade.label_tag }} {{ form.grade|add_class:"form-control" }}
             </div>
 
             <div class="form-row" id="college-fields" style="display: none;">
                 <div class="form-group col-md-6">
-                    {{ form.year.label_tag }} {{ form.year }}
+                    {{ form.year.label_tag }} {{ form.year|add_class:"form-control" }}
                 </div>
                 <div class="form-group col-md-6">
-                    {{ form.stream.label_tag }} {{ form.stream }}
+                    {{ form.stream.label_tag }} {{ form.stream|add_class:"form-control" }}
                 </div>
             </div>
 
             <div class="form-group">
-                {{ form.blood_group.label_tag }} {{ form.blood_group }}
+                {{ form.blood_group.label_tag }} {{ form.blood_group|add_class:"form-control" }}
             </div>
             <div class="form-group">
-                {{ form.gender.label_tag }} {{ form.gender }}
+                {{ form.gender.label_tag }} {{ form.gender|add_class:"form-control" }}
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+
+            
         </form><br>
     </div>
 </div>
 
-<!-- JavaScript to handle conditional fields based on institution type -->
+<!-- JavaScript for handling form logic and validation -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const institutionTypeRadios = document.querySelectorAll('input[name="institution_type"]');
+        const institutionTypeSelect = document.getElementById('institution_type');
+        const institutionNameField = document.getElementById('institution-name-field');
+        const institutionNameSelect = document.getElementById('institution_name');
         const schoolFields = document.getElementById('school-fields');
         const collegeFields = document.getElementById('college-fields');
 
-        institutionTypeRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                if (this.value === 'School') {
-                    schoolFields.style.display = 'block';
-                    collegeFields.style.display = 'none';
-                } else if (this.value === 'College') {
-                    collegeFields.style.display = 'block';
-                    schoolFields.style.display = 'none';
+        institutionTypeSelect.addEventListener('change', function() {
+            const selectedType = this.value;
+            console.log('Selected Institution Type:', selectedType); // Add this line for debugging
+            institutionNameField.style.display = selectedType ? 'block' : 'none';
+            schoolFields.style.display = 'none';
+            collegeFields.style.display = 'none';
+
+            // Clear previous selections
+            institutionNameSelect.selectedIndex = 0;
+
+            // Show relevant fields based on institution type
+            if (selectedType === 'School') {
+                schoolFields.style.display = 'block';
+            } else if (selectedType === 'College') {
+                collegeFields.style.display = 'block';
+            }
+
+            // Filter institutions based on selected type
+            const options = institutionNameSelect.querySelectorAll('option');
+            options.forEach(option => {
+                console.log(option.value, option.dataset.type); // Add this line for debugging
+                if (option.value && option.dataset.type !== selectedType && selectedType) {
+                    option.style.display = 'none';  // Hide options not matching the selected type
+                } else {
+                    option.style.display = 'block';  // Show matching options
                 }
             });
         });
+       
     });
+
+       
+
+    // Function to validate the form
+    function validateForm() {
+        const mobile = document.querySelector('[name="mobile"]');
+        const email = document.querySelector('[name="email"]');
+        let valid = true;
+
+        // Mobile validation (assuming Indian format)
+        const mobileRegex = /^[0-9]{10}$/;
+        if (!mobileRegex.test(mobile.value)) {
+            mobile.classList.add('is-invalid');
+            valid = false;
+        } else {
+            mobile.classList.remove('is-invalid');
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+            email.classList.add('is-invalid');
+            valid = false;
+        } else {
+            email.classList.remove('is-invalid');
+        }
+
+        if (valid) {
+            // Clear mobile number and email fields after a successful validation
+            setTimeout(() => {
+                mobile.value = '';
+                email.value = '';
+            }, 5000); // Clear after 5 seconds
+        }
+
+        return valid;  // Prevent form submission if invalid
+    }
+    const nonFieldErrors = document.querySelector('.alert-danger');
+        if (nonFieldErrors) {
+            setTimeout(() => {
+                nonFieldErrors.style.display = 'none'; // Hide after 5 seconds
+            }, 5000);
+        }
+
+    function initializeForm() {
+        const selectedType = institutionTypeSelect.value;
+        institutionNameField.style.display = selectedType ? 'block' : 'none';
+        schoolFields.style.display = 'none';
+        collegeFields.style.display = 'none';
+
+        if (selectedType === 'School') {
+            schoolFields.style.display = 'block';
+        } else if (selectedType === 'College') {
+            collegeFields.style.display = 'block';
+        }
+
+        // Filter institutions based on selected type
+        const options = institutionNameSelect.querySelectorAll('option');
+        options.forEach(option => {
+            if (option.value && option.dataset.type !== selectedType && selectedType) {
+                option.style.display = 'none';  // Hide options not matching the selected type
+            } else {
+                option.style.display = 'block';  // Show matching options
+            }
+        });
+    }
+
+// Call the function on page load
+initializeForm();
 </script>
+
+</div>
 {% endblock %}

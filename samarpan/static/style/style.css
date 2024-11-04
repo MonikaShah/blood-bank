@@ -2575,17 +2575,20 @@ form.bs-docs-example {
     padding-top: 20px;
     padding-bottom: 20px;
   }
-  
-  
 
 }
+login-form {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items */
+    justify-content: center; /* Center items */
+    padding: 20px; /* Add some padding */
+}
 
-
-
-
-
-
-
+.login-form input {
+    width: 100%; /* Make input fields take full width */
+    margin: 10px 0; /* Add some space between inputs */
+}
 
 .icon-white,
 .nav-pills > .active > a > [class^="icon-"],

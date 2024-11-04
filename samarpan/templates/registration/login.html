@@ -1,26 +1,72 @@
 {% extends "samarpan/base.html" %}
 {% block title %}Login | Samarpan Blood Centre{% endblock %}
 {% load static %}
+{% load custom_filters %}
 {% block content %}
-<div id="about" class="about"><br><br><br><br>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-sm-10 col-xs-12">
-                <h2 class="text-center mb-4">Login</h2>
-                <form method="post" class="login-form p-4 border rounded">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                </form>
-                {% if form.errors %}
-                    <div class="alert alert-danger mt-3" role="alert">
-                        Invalid credentials, please try again.
-                    </div>
-                {% endif %}
+<style>
+    .login-form {
+       
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        max-width: 800px; /* Limit the form width */
+        margin: auto; /* Center the form horizontally */
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        /* margin-top: 50px; */
+    }
+
+    .form-control {
+        max-width: 300px; /* Set a maximum width for the input fields */
+        margin: auto; /* Center input fields within the form */
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .alert {
+        margin-top: 10px;
+    }
+    /* Add custom spacing for the form container */
+    .mt-custom {
+        margin-top: 30px; /* Adjust as needed */
+    }
+</style>
+
+<div id="about" class="about">
+    <div class="col-md-12 col-sm-12 col-xs-12 bloodbox" style="padding:5px;">
+        <div class="col-md-12 col-sm-12 col-xs-12" style="border:1px solid #F90; padding:15px;">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="center_text">
+                    <center><h2>Login</h2></center>   
+                </div>
             </div>
         </div>
+    </div>
+    <div class="container">
+        <div class="col-md-12 col-sm-12 col-xs-12"></div>
+        <form method="post" class="login-form p-4 border rounded">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username" style="margin-top: 10px;">Username</label>
+                    {{ form.username|add_class:"form-control w-50" }}  <!-- Adjust width here -->
+                </div>
+                <div class="form-group">
+                    <label for="password" style="margin-top: 10px;">Password</label>
+                    {{ form.password|add_class:"form-control w-50" }}  <!-- Adjust width here -->
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+            {% if form.errors %}
+                <div class="alert alert-danger mt-3" role="alert">
+                    Invalid credentials, please try again.
+                </div>
+            {% endif %}
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content='http://samarpanbloodcentre.org/' property='og:url'>
+    <meta content="WELCOME TO SAMARPAN BLOOD CENTRE" property='og:title'>
+    <meta content='http://samarpanbloodcentre.org/images/slide1.jpg' property='og:image'>
+    <meta content="We take proud to inform you that the Samarpan Blood Bank..." property='og:description'>
+    <meta name="facebook-domain-verification" content="8jo8fj5tx5c6n8ogk802j7wnbdg05y" />
+
+    <title>WELCOME TO SAMARPAN BLOOD CENTRE</title>
+    <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+    <link href="{% static 'css/font-awesome.min.css' %}" rel='stylesheet' type='text/css' />
+    <link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/move-top.js' %}"></script>
+    <script src="{% static 'js/easing.js' %}"></script>
+</head>
+
+<body style="background: #fff;">
+    <!-- Header section -->
+    <div id="home" class="header">
+        <div class="top-header">
+            <div class="container">
+                <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="logo">
+                                <a href="{% url 'home' %}">
+                                    <img src="{% static 'images/logo.png' %}" title="Samarpan Blood Bank Logo" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'about' %}">About Us</a></li>
+                                <li><a href="{% url 'product' %}">Product</a></li>
+                                <li><a href="{% url 'organizer' %}">Organizer</a></li>
+                                <li><a href="{% url 'services' %}">Services</a></li>
+                                <li><a href="{% url 'donor' %}">Donor</a></li>
+                                <li><a href="{% url 'other_activities' %}">Other Activities</a></li>
+                                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                                <li><a href="{% url 'thalassemia' %}">Thalassemia</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                <li style="background-color:#C33; color:#FFF">
+                                    <a href="{% url 'donation' %}" style="color:#FFF; font-weight:bold"> Donation <span class="fa fa-rupee"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Content block -->
+    <!-- <div class="container"> -->
+        {% block content %}
+        <!-- Placeholder for individual page content -->
+        {% endblock %}
+    <!-- </div> -->
+
+    <!-- Footer section -->
+    <footer>
+        <aside id="ccr-footer-sidebar">
+            <div class="container">
+        
+                <ul>
+                    <li class="col-md-4">
+                        <h5>Samarpan Blood  Centre </h5>
+                        
+                        <div class="site-logo">
+                        
+                            <p style=" color:#FFF; font-size:14px;">
+                             
+                               <span class="fa fa-home"></span>
+                            201 ,2nd Floor, Aaradhya health care, <br />
+                                            Aaradhyaa one earth, H wing, <br />
+                                            Nayadu Colony, Pantnagar, Ghatkopar East, <br />
+                                            Pincode 400075.
+                            </p>
+                            
+                            <p style=" color:#FFF; font-size:14px;">
+                            <span class="fa fa-phone"></span>
+                             +91 022-49603131, +91 022-49644455, +91 022-46093131, +91 022-41235151.<br /><br />
+                                 <span class="fa fa-mobile"></span>
+                               +91 703 966 7203, +91 703 966 7204.
+                            </p>
+                            
+                             <p style=" color:#FFF; font-size:14px;">
+                            <span class="fa fa-envelope"></span>
+                            tr@samarpanbloodcentre.org 
+                            
+                            </p>
+                            
+                        </div> <!-- / .navbar-header -->
+                        
+                    </li>
+                    <li class="col-md-4">
+                        <h5>Samarpan Blood Storage Centre</h5>
+                        <div class="site-logo">
+                        
+                            <p style=" color:#FFF; font-size:14px;">
+                             
+                               <span class="fa fa-home"></span>
+                               Shree Pragati Foundation's Hira<br /> Mongi Navneet Hospital<br />
+                                Valji Ladha road,<br /> Mulund (W), Mumbai - 4000 080<br />
+                            </p>
+                            
+                            <p style=" color:#FFF; font-size:14px;">
+                            <span class="fa fa-phone"></span>
+                              9594032512, <br />Board Line : 61590 5577.                    
+                            </p>
+                            
+                             <p style=" color:#FFF; font-size:14px;">
+                            <span class="fa fa-envelope"></span>
+                           hm@samarpanbloodcentre.org 
+                            
+                            </p>
+                            
+                        </div> <!-- / .navbar-header -->
+                        
+                    </li>
+                    <li class="col-md-4">
+                        <h5> Khopoli Mahajan Samarpan Blood Storage Centre</h5>
+                        <div class="site-logo">
+                        
+                            <p style=" color:#FFF; font-size:14px;">
+                             
+                               <span class="fa fa-home"></span>
+                               G.V.P.B. Saraswati Ma Lohana<br /> Mahajan wadi<br />
+              Opp.Central Bank of India ,<br />Jalaram Nagar, Khopoli,
+        <br />
+                            </p>
+                            
+                            <p style=" color:#FFF; font-size:14px;">
+                            <span class="fa fa-phone"></span>
+                                    9325102511, 02192-268750                   
+                            </p>
+                            
+                             <p style=" color:#FFF; font-size:14px;">
+                            <span class="fa fa-envelope"></span>
+                           km@samarpanbloodcentre.org
+                            
+                            </p>
+                            
+                        </div> <!-- / .navbar-header -->
+                        
+                    </li>
+                    
+                </ul>
+            </div>
+         </aside>
+        
+                  
+       	<!--- copy-right ---->
+			<div class="copy-right">
+				<div class="container">
+                
+                  <div class="col-lg-8 col-md-8">
+				<div class="copy-right-left">
+					<p> Samarpan Blood Centre <span class="fa fa-copyright"></span> 2021 All Rights Reserved | <b>Powered by :&nbsp;</b><a href="http://stridessoftware.com/" style="color:Black;" target="_blank">Strides Software Solution Pvt Ltd</a></p>
+					
+					<script type="text/javascript">
+									$(document).ready(function() {
+										/*
+										var defaults = {
+								  			containerID: 'toTop', // fading element id
+											containerHoverID: 'toTopHover', // fading element hover id
+											scrollSpeed: 1200,
+											easingType: 'linear' 
+								 		};
+										*/
+										
+										$().UItoTop({ easingType: 'easeOutQuart' });
+										
+									});
+								</script>
+					<a href="#" id="toTop" style="display: block;" class="btn btn-info"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+				</div>
+			
+				<div class="clearfix"> </div>
+                </div>
+                 <div class="col-lg-4 col-md-4" style="text-align:right">
+					<a class=" fa fa-facebook-square fa-2x" href="https://www.facebook.com/samarpanbloodcentreghatkopar" target="_blank"></a>
+                    <a class=" fa  fa-twitter-square fa-2x" href="#"></a>
+                    <a class=" fa fa-youtube-square fa-2x" href="#"></a>
+                    <a class=" fa fa-linkedin-square fa-2x" href="#"></a>
+     </div>
+     
+			</div>
+			</div>
+			<!--- copy-right ---->
+            
+            
+            <script src="{% static 'js/bootstrap.min.js' %}"></script>
+            
+            
+	</body>
+</html>
+
+    </footer>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
