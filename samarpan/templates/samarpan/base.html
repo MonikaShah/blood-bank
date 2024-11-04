@@ -56,6 +56,8 @@
                                 <li><a href="{% url 'thalassemia' %}">Thalassemia</a></li>
                                 <li><a href="{% url 'contact' %}">Contact</a></li>
                                 {% if request.user.is_authenticated %}
+                                <div>Authenticated User: {{ request.user.username }}</div>
+                                <div>Groups: {{ request.user.groups.all }}</div>
                                     {% if request.user|has_group:"Manager" %}
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="addDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
